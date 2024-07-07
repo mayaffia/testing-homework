@@ -17,6 +17,22 @@ describe('navigation', function() {
 
         expect(await navMenu.isDisplayed()).toBe(false);
     });
+
+
+    it('при выборе элемента из меню гамбургера, оно закрывается', async ({browser}) => {
+        await browser.setWindowSize(500, 700);
+        await browser.url('http://localhost:3000/hw/store');
+
+        const hamburger = await browser.$('.navbar-toggler-icon');
+        await hamburger.click();
+
+        const navMenu = await browser.$('.navbar-nav');
+
+        const menuItem = await browser.$(".nav-link");
+        await menuItem.click();
+
+        expect(await navMenu.isDisplayed()).toBe(false);
+    });
 });
 
 
@@ -32,4 +48,6 @@ describe('название магазина в шапке', function() {
         expect(linkHref).toBe('/hw/store');
     });
 });
+
+
 
